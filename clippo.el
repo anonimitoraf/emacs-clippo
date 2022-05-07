@@ -9,10 +9,14 @@
 
 ;;; Code:
 
-(defun clippo--paste-to-osx (text)
-  "Puts TEXT into OSX's clipboard."
+(require 'core)
+
+(defun clippo--paste-to-os-clipboard (text)
+  "Puts TEXT into the OS's clipboard."
   (let ((process-connection-type nil))
-    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+    (let ((proc (cond (IS-MAC (start-process "clippo-pbcopy" "*Messages*" "pbcopy"))
+                      (IS-LINUX (start-process "clippo-xclip" "*Messages*" "xclip" "-sel" "clip"))
+                      (t (user-error "Unsupported OS: %s" system-type)))))
       (process-send-string proc text)
       (process-send-eof proc))))
 
@@ -25,7 +29,7 @@ Optionally executes CALLBACK afterwards"
     (raise-frame new-frame)
     (let ((yanked (read-from-kill-ring "Copy to clipboard: ")))
       (run-at-time 0 nil (lambda () (delete-frame new-frame)))
-      (clippo--paste-to-osx yanked)
+      (clippo--paste-to-os-clipboard yanked)
       (when callback (funcall callback))
       yanked)))
 
