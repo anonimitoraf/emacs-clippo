@@ -64,5 +64,5 @@ emacsclient --eval "(clippo)"
 - Tell i3 to configure emacs-clippo to be a floating window. Put this into your i3 config file
 
 ``` shell
-for_window [title="^emacs-clippo.*"] floating enable
+for_window [title="^emacs-clippo.*" class="Emacs"] floating enable
 ```
