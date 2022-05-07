@@ -31,8 +31,16 @@ yabai -m signal --add event=window_created title='^emacs-clippo.*' action='yabai
 yabai -m rule --add title='^emacs-clippo.*' layer=above manage=off
 ```
 
-- Command to invoke (you might want to create a keybinding for this, e.g. via skhd)
+If you built Emacs with `--with-no-frame-refocus`, the command you want to invoke is:
+``` shell
+emacsclient --eval "(clippo)"
+```
+
+Otherwise:
 ``` shell
 emacsclient --eval "(clippo-yabai $(yabai -m query --windows --window | jq .id))"
 ```
-We need to pass in the window ID, otherwise, OSX focuses Emacs GUI (from which emacsclient was spawned) after you copy to clipboard
+We need to pass in the window ID, otherwise, OSX focuses Emacs GUI (from which emacsclient was spawned) after you copy to clipboard.
+NOTE: This, for some reason, causes a 1-2 sec delay for emacsclient to close, so it's recommended that you build Emacs with `--with-no-frame-refocus` if possible!
+
+(You might want to create a keybinding for this, e.g. via skhd)
