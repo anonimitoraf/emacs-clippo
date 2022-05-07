@@ -2,7 +2,7 @@
 - yabai
 
 # Demos
-TODO
+![demo-1](./demos/emacs-clippo-demo-1.png)
 
 # Installation
 TODO
