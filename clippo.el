@@ -32,7 +32,7 @@ Optionally executes CALLBACK afterwards"
 (defun clippo-yabai (window-id)
   "Just like the fn `clippo' but specifically for yabai.
 Focuses WINDOW-ID as a callback."
-  (clippo (lambda () (shell-command (format "yabai -m window --focus %s" window-id)))))
+  (clippo (lambda () (async-shell-command (format "yabai -m window --focus %s" window-id)))))
 
 (provide 'clippo)
 ;;; clippo.el ends here
