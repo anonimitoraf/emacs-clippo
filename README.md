@@ -33,6 +33,6 @@ yabai -m rule --add title='^emacs-clippo.*' layer=above manage=off
 
 - Command to invoke (you might want to create a keybinding for this, e.g. via skhd)
 ``` shell
-emacsclient --eval "(clipboard-yabai $(yabai -m query --windows --window | jq .id))"
+emacsclient --eval "(clippo-yabai $(yabai -m query --windows --window | jq .id))"
 ```
 We need to pass in the window ID, otherwise, OSX focuses Emacs GUI (from which emacsclient was spawned) after you copy to clipboard
