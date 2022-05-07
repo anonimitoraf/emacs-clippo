@@ -11,10 +11,10 @@
 
 (defun clippo--paste-to-osx (text)
   "Puts TEXT into OSX's clipboard."
-  (let ((process-connection-type nil)
-        (proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-    (process-send-string proc text)
-    (process-send-eof proc)))
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
 
 (defun clippo (&optional callback)
   "Pops out the `kill-ring' which you can copy from.
