@@ -19,7 +19,7 @@
 (defun clippo (&optional callback)
   "Pops out the `kill-ring' which you can copy from.
 Optionally executes CALLBACK afterwards"
-  (let ((new-frame (make-frame '((name . "emacs-clip")
+  (let ((new-frame (make-frame '((name . "emacs-clippo")
                                  (minibuffer . only)))))
     (select-frame new-frame)
     (raise-frame new-frame)

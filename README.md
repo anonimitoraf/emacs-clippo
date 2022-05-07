@@ -20,12 +20,12 @@ The set up required depends on your window manager
 ### Setup
 - Tell yabai to auto-focus emacs-clip when it gets instantiated
 ```shell
-yabai -m signal --add event=window_created title='^emacs-clip.*' action='yabai -m window --focus ${YABAI_WINDOW_ID}'
+yabai -m signal --add event=window_created title='^emacs-clippo.*' action='yabai -m window --focus ${YABAI_WINDOW_ID}'
 ```
 
 - Tell yabai configure emacs-clip to be a floating window
 ``` shell
-yabai -m rule --add title='^emacs-clip.*' layer=above manage=off
+yabai -m rule --add title='^emacs-clippo.*' layer=above manage=off
 ```
 
 - Command to invoke (you might want to create a keybinding for this, e.g. via skhd)
