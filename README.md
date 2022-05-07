@@ -1,11 +1,12 @@
 # Supported Window Managers
 - yabai
+Feel free to implement/contact me for other window managers!
 
 # Demos
 ![demo-1](./demos/emacs-clippo-demo-1.png)
 
 # Installation
-TODO
+Not in MELPA (yet) but, all it you really need to do is evaluate `clippo.el` in your Emacs
 
 # Quick Start
 The set up required depends on your window manager
