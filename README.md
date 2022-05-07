@@ -19,18 +19,16 @@ The set up required depends on your window manager
 
 ### Setup
 
-#### Startup - (put these in your shell's profile e.g. .bash_profile, .bashrc, etc)
-- Tell yabai to auto-focus emacs-clip when it gets instantiated
+- Tell yabai to auto-focus emacs-clip when it gets instantiated. Put this into your yabairc
 ```shell
 yabai -m signal --add event=window_created title='^emacs-clippo.*' action='yabai -m window --focus ${YABAI_WINDOW_ID}'
 ```
 
-- Tell yabai configure emacs-clip to be a floating window
+- Tell yabai configure emacs-clip to be a floating window. Put this into your yabairc
 ``` shell
 yabai -m rule --add title='^emacs-clippo.*' layer=above manage=off
 ```
 
-#### Command
 - Command to invoke (you might want to create a keybinding for this, e.g. via skhd)
 ``` shell
 emacsclient --eval "(clipboard-yabai $(yabai -m query --windows --window | jq .id))"
