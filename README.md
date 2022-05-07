@@ -1,6 +1,7 @@
 # Supported Window Managers
 - yabai
-Feel free to implement/contact me for other window managers!
+
+**Feel free to implement/contact me for other window managers!**
 
 # Demos
 ![demo-1](./demos/emacs-clippo-demo-1.png)
@@ -34,4 +35,4 @@ yabai -m rule --add title='^emacs-clippo.*' layer=above manage=off
 ``` shell
 emacsclient --eval "(clipboard-yabai $(yabai -m query --windows --window | jq .id))"
 ```
-We need to pass in the window ID, otherwise, OSX fuses Emacs GUI (from which emacsclient was spawned) after you copy to clipboard
+We need to pass in the window ID, otherwise, OSX focuses Emacs GUI (from which emacsclient was spawned) after you copy to clipboard
