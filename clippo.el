@@ -22,15 +22,18 @@
 (defun clippo (&optional callback)
   "Pops out the `kill-ring' which you can copy from.
 Optionally executes CALLBACK afterwards"
-  (let ((new-frame (make-frame '((name . "emacs-clippo")
-                                 (minibuffer . only)))))
-    (select-frame new-frame)
-    (raise-frame new-frame)
-    (let ((yanked (read-from-kill-ring "Copy to clipboard: ")))
-      (run-at-time 0 nil (lambda () (delete-frame new-frame)))
-      (clippo--paste-to-os-clipboard yanked)
-      (when callback (funcall callback))
-      yanked)))
+  (condition-case nil
+      (let ((new-frame (make-frame '((name . "emacs-clippo")
+                                     (minibuffer . only)))))
+        (select-frame new-frame)
+        (raise-frame new-frame)
+        (let ((yanked (read-from-kill-ring "Copy to clipboard: ")))
+          (clippo--paste-to-os-clipboard yanked)
+          (when callback (funcall callback))
+          (delete-frame)
+          yanked))
+    ;; Cancelled
+    (quit (delete-frame))))
 
 (defun clippo-yabai (window-id)
   "Just like the fn `clippo' but specifically for yabai.
