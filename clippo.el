@@ -9,14 +9,13 @@
 
 ;;; Code:
 
-(require 'core)
-
 (defun clippo--paste-to-os-clipboard (text)
   "Puts TEXT into the OS's clipboard."
   (let ((process-connection-type nil))
-    (let ((proc (cond (IS-MAC (start-process "clippo-pbcopy" "*Messages*" "pbcopy"))
-                      (IS-LINUX (start-process "clippo-xclip" "*Messages*" "xclip" "-sel" "clip"))
-                      (t (user-error "Unsupported OS: %s" system-type)))))
+    (let ((proc (pcase system-type
+                  ('darwin (start-process "clippo-pbcopy" "*Messages*" "pbcopy"))
+                  ('gnu/linux (start-process "clippo-xclip" "*Messages*" "xclip" "-sel" "clip"))
+                  (s (user-error "Unsupported OS: %s" s)))))
       (process-send-string proc text)
       (process-send-eof proc))))
 
