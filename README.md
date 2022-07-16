@@ -20,7 +20,32 @@ Not in MELPA (yet) but, all it you really need to do is evaluate `clippo.el` in 
 ## Prerequisites
 - emacs (with a daemon currently running)
 
-## Mac
+## Mac (hammerspoon)
+
+```lua
+-- Clipboard manager
+hs.hotkey.bind({'ctrl', 'shift'}, 'q', function() -- CHANGE THE KEYBINDING TO YOUR LIKING
+    local task = hs.task.new(
+      '/opt/homebrew/bin/emacsclient', -- CHANGE THIS TO THE FULL PATH OF EMACSCLIENT
+      function(exitCode, stdout, stderr)
+        print("Clippo exit code:" .. exitCode)
+        print("Clippo stdout:" .. stdout)
+        print("Clippo stderr:" .. stderr)
+      end,
+      { '--eval', '(clippo)' }
+    )
+    task:start()
+end)
+
+-- Auto-focus emacsclient when created
+local wf=hs.window.filter
+local wf_emacs = wf.new{'Emacs'}
+wf_emacs:subscribe(wf.windowCreated, function(window)
+    window:focus()
+end)
+```
+
+## Mac (yabai)
 
 ### Command
 ``` shell
