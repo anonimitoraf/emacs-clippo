@@ -24,7 +24,9 @@
 Optionally executes CALLBACK afterwards"
   (condition-case nil
       (let ((new-frame (make-frame '((name . "emacs-clippo")
-                                     (minibuffer . only)))))
+                                     (minibuffer . only)
+                                     (undecorated . nil)
+                                     (width . 0.5)))))
         (select-frame new-frame)
         (raise-frame new-frame)
         (let ((yanked (read-from-kill-ring "Copy to clipboard: ")))
