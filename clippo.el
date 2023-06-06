@@ -1,13 +1,31 @@
-;;; clippo.el --- Clipboard manager with Emacs   -*- lexical-binding: t; -*-
+;;; clippo.el --- Clipboard manager   -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Rafael Nicdao
 
 ;; Author: Rafael Nicdao <nicdaoraf@gmail.com>
 ;; Keywords: clipboard, 'clipboard manager'
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "28.1") (clipmon "20160925"))
+;; Homepage: https://github.com/anonimitoraf/emacs-clippo
 
 ;;; Commentary:
 
+;; Clippo is a simple clipboard manager meant to be used outside of Emacs.
+
 ;;; Code:
+
+;; TODO Add for the clipmon requirement
+(require 'clipmon)
+
+(defun clippo-start-listen ()
+  "Start listening for any copies to the system clipboard"
+  (interactive)
+  (clipmon-mode-start))
+
+(defun clippo-stop-listen ()
+  "Stop listening for any copies to the system clipboard"
+  (interactive)
+  (clipmon-mode-stop))
 
 (defun clippo--paste-to-os-clipboard (text)
   "Puts TEXT into the OS's clipboard."

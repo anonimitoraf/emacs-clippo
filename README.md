@@ -19,6 +19,7 @@ Not in MELPA (yet) but, all it you really need to do is evaluate `clippo.el` in 
 
 ## Prerequisites
 - emacs (with a daemon currently running)
+- Invoke `clippo-start-listen`. This starts `clipmon` which listens, captures copies to the system clipboard and puts them into the kill-ring.
 
 ## Mac (hammerspoon)
 
