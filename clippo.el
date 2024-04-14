@@ -20,6 +20,7 @@
 (defun clippo-start-listen ()
   "Start listening for any copies to the system clipboard"
   (interactive)
+  (setq clipmon-timer-interval 0.5)
   (clipmon-mode-start))
 
 (defun clippo-stop-listen ()
